@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineShop.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,15 @@ namespace OnlineShop
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+        private DBService _service;
         public MainWindow()
         {
             InitializeComponent();
+            _service = new();
+            _service.RegisterHandler(PrintMessage);
+            _service.CheckConnection();
         }
+        private void PrintMessage(string message) => MessageBox.Show(message);
     }
 }
