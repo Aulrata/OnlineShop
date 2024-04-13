@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using OnlineShop.Application.Services;
+using OnlineShop.Domain.Abstractions;
+using OnlineShop.Domain.Contracts;
 using OnlineShop.Infrastructure;
+using OnlineShop.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,9 @@ builder.Services.AddDbContext<OnlineShopDbContext>(
     {
         options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresSQL"));
     });
+
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 var app = builder.Build();
 
