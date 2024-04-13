@@ -39,7 +39,11 @@ public class CustomerController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> CreateCustomer([FromBody] CustomerRequest request)
     {
+        if (string.IsNullOrEmpty(request.Name) || string.IsNullOrEmpty(request.Email))
+            return BadRequest($"{nameof(request.Name)} or {nameof(request.Email)} can't be null or empty.");
+        
         var customer = new CustomerModel(Guid.NewGuid(), request.Name, request.Email);
+        
         try
         {
             await _customerService.CreateCustomer(customer);
@@ -52,5 +56,26 @@ public class CustomerController : ControllerBase
         
 
         return Ok(customer);
+    }
+
+    [HttpPut("{id:guid}")]
+    public async Task<ActionResult> UpdateCustomer(Guid id, [FromBody] CustomerRequest request)
+    {
+        if (string.IsNullOrEmpty(request.Name) || string.IsNullOrEmpty(request.Email))
+            return BadRequest($"{nameof(request.Name)} or {nameof(request.Email)} can't be null or empty.");
+        
+        var customer = new CustomerModel(id, request.Name, request.Email);
+
+        await _customerService.UpdateCustomer(customer);
+
+        return Ok();
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<ActionResult> DeleteCustomer(Guid id)
+    {
+        await _customerService.DeleteCustomer(id);
+        
+        return Ok();
     }
 }
