@@ -40,13 +40,19 @@ public class CustomerRepository : ICustomerRepository
         return customers;
     }
 
-    public Task<CustomerModel> Update(CustomerModel model)
+    public async Task Update(CustomerModel model)
     {
-        throw new NotImplementedException();
+        await _dbContext.Customers
+            .Where(c => c.Id == model.Id)
+            .ExecuteUpdateAsync(s => s
+                .SetProperty(c => c.Name, c => model.Name)
+                .SetProperty(c => c.Email, c => model.Email));
     }
 
-    public Task Delete(CustomerModel model)
+    public async Task Delete(CustomerModel model)
     {
-        throw new NotImplementedException();
+        await _dbContext.Customers
+            .Where(c => c.Id == model.Id)
+            .ExecuteDeleteAsync();
     }
 }

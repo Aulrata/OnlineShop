@@ -23,13 +23,13 @@ public class CustomerService : ICustomerService
         return await _customerRepository.Get();
     }
 
-    public Task<CustomerModel> UpdateCustomer(CustomerModel model)
+    public async Task UpdateCustomer(CustomerModel model)
     {
-        throw new NotImplementedException();
+        await _customerRepository.Update(model);
     }
 
-    public Task DeleteCustomer(CustomerModel model)
+    public async Task DeleteCustomer(CustomerModel model)
     {
-        throw new NotImplementedException();
+        await _customerRepository.Delete(model);
     }
 }

@@ -8,7 +8,7 @@ public interface ICustomerService
 
     Task<List<CustomerModel>> GetAllCustomers();
 
-    Task<CustomerModel> UpdateCustomer(CustomerModel model);
+    Task UpdateCustomer(CustomerModel model);
 
     Task DeleteCustomer(CustomerModel model);
 }

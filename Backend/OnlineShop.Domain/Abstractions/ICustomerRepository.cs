@@ -8,7 +8,7 @@ public interface ICustomerRepository
 
     Task<List<CustomerModel>> Get();
 
-    Task<CustomerModel> Update(CustomerModel model);
+    Task Update(CustomerModel model);
 
     Task Delete(CustomerModel model);
 }
