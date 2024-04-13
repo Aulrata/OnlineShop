@@ -49,10 +49,10 @@ public class CustomerRepository : ICustomerRepository
                 .SetProperty(c => c.Email, c => model.Email));
     }
 
-    public async Task Delete(CustomerModel model)
+    public async Task Delete(Guid id)
     {
         await _dbContext.Customers
-            .Where(c => c.Id == model.Id)
+            .Where(c => c.Id == id)
             .ExecuteDeleteAsync();
     }
 }

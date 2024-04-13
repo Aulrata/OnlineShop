@@ -10,5 +10,5 @@ public interface ICustomerService
 
     Task UpdateCustomer(CustomerModel model);
 
-    Task DeleteCustomer(CustomerModel model);
+    Task DeleteCustomer(Guid id);
 }

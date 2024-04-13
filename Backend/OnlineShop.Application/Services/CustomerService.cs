@@ -28,8 +28,8 @@ public class CustomerService : ICustomerService
         await _customerRepository.Update(model);
     }
 
-    public async Task DeleteCustomer(CustomerModel model)
+    public async Task DeleteCustomer(Guid id)
     {
-        await _customerRepository.Delete(model);
+        await _customerRepository.Delete(id);
     }
 }

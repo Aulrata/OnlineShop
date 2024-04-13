@@ -10,5 +10,5 @@ public interface ICustomerRepository
 
     Task Update(CustomerModel model);
 
-    Task Delete(CustomerModel model);
+    Task Delete(Guid id);
 }
